@@ -1,5 +1,4 @@
 import imp
-from posixpath import split
 from re import U
 from turtle import update
 from django.db import models
