@@ -1,6 +1,5 @@
 from multiprocessing import context
 from re import S, T, U
-from tkinter import E
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages
@@ -75,7 +74,7 @@ def success(request):
             "users": a ,
             "trips": t ,
         }
-        return render(request, 'board.html', context)
+        return render(request, 'Board.html', context)
 
 def trip(request):
     u =User.objects.get(id = request.session['users'])
