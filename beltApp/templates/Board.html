@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trip buddy dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <div class = "container">
+
+        <div class = "navbar">
+            <h2>hello {{user.fName}}!</h2>
+            <div class = "ss">
+                <a href="/logout">logout</a> 
+                </form>
+                <a href="/trip"><input type="submit" value="create new trip"></a>  
+            </div>
+        </div>
+        <div>
+            <p>your trips:</p>
+            <table class = "table">
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </tr>
+                
+                {% for item in user.trips.all %}
+                
+                <tr>
+                    <td><a href="/info/{{item.id}}">{{item.dest}}</a></td>
+                    <td>{{item.SDate}}</td>
+                    <td>{{item.EDate}}</td>
+                    <td>{{item.plan}}</td>
+                    {%if item.user.id == user.id%}
+                    <td>
+                        <a href="/delete/{{item.id}}">remove</a>
+                        <a href="/edit/{{item.id}}">Edit</a> 
+                        
+                    </td>
+                    {% else %}
+                    <td><a href="cancel/{{item.id}}">cancel</a></td>
+                    {% endif %}
+                    
+                </tr>
+                
+                {% endfor %}
+                {% for item in user.trip.all %}
+                
+                <tr>
+                    <td><a href="/info/{{item.id}}">{{item.dest}}</a></td>
+                    <td>{{item.SDate}}</td>
+                    <td>{{item.EDate}}</td>
+                    <td>{{item.plan}}</td>
+                    {%if item.user.id == user.id%}
+                    <td>
+                        <a href="/delete/{{item.id}}">remove</a>
+                        <a href="/edit/{{item.id}}">Edit</a> 
+                        
+                    </td>
+                    {% else %}
+                    <td><a href="cancel/{{item.id}}">cancel</a></td>
+                    {% endif %}
+                    
+                </tr>
+                
+                {% endfor %}
+            </table>
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </tr>
+                
+                <br>
+                {%for item in trips.all %}
+                {%if user not in item.memebers.all%}
+                    <tr>
+                        <td><a href="/info/{{item.id}}">{{item.dest}}</a></td>
+                        <td>{{item.SDate}}</td>
+                        <td>{{item.EDate}}</td>
+                        <td>{{item.plan}}</td>
+                        <td>
+                            <a href="/join/{{item.id}}">join</a>
+                            
+                        </td>
+                        
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+            </table>
+
+    </body>
+</html>

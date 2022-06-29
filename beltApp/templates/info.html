@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Trip</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class = "navbar">
+        <h2>Hello {{user.fName}}!</h2>
+        <div>
+
+            <a href="/logout">logout</a>
+            <a href="/trips">dashboard</a>
+        </div>
+    </div>
+
+    <div>
+        <p>{{trip.dest}}:</p> 
+        <div>
+
+            <p>start Date {{trip.SDate}}</p>
+            <p>end Date : {{trip.EDate}}</p>
+            <p>created on : {{trip.created_at}}</p>
+            <p>Last update : {{trip.updated_at}}</p>
+            <p>plane : {{trip.plan}}</p>
+            <p>created by {{trip.user.fName}}</p>
+        </div>
+        <br>
+        <div>
+            <p>people who've joined the trip:</p>
+            {% for people in trip.memebers.all %}
+            <p>{{people.fName}}</p>
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>
