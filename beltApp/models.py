@@ -1,6 +1,5 @@
 import imp
 from re import U
-from turtle import update
 from django.db import models
 import re
 from datetime import *
